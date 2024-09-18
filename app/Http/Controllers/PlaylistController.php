@@ -17,6 +17,11 @@ class PlaylistController extends Controller
         return view('playlist.index', compact('playlists'));
     }
 
+    public function create()
+    {
+       return view('playlist.create');
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -25,11 +30,13 @@ class PlaylistController extends Controller
         $request->validate([
             'name' => 'required',
             'tag' => 'required'
+            // 'id' => 'required'
         ]);
 
         Playlist::create([
             'name' => $request->input('name'),
             'tag' => $request->input('tag')
+            // 'id' =>$request->('id')
         ]);
 
         return redirect('/playlist')->with('success', 'Playlist created successfully!');

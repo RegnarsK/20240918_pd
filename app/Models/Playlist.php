@@ -12,6 +12,7 @@ class Playlist extends Model
     protected $fillable = [
         'name',
         'tag',
+        'id'
     ];
 
     public function songs() {

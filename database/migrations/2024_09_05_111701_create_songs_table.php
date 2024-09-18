@@ -24,7 +24,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('tag');
-            
+            // $table->int('id');
         });
     }
 
