@@ -45,10 +45,10 @@ class PlaylistController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Playlist $playlist)
+    public function show(Playlist $playlist, Song $Song)
     {
         $allSongs = Song::all();
-        return view('playlist.show');
+        return view('playlist.show', ['playlist' => $playlist]);
     }
 
     /**
@@ -66,7 +66,7 @@ class PlaylistController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
 {
     // Validate the request data
     $request->validate([
@@ -88,7 +88,15 @@ class PlaylistController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy() {
+    public function destroy($id) {
+
+
+        $playlist = playlist::where('id', $id);
+
+        $playlist->delete();
+
+
+
         return redirect('/playlist')->with('success', 'Playlist deleted successfully!');
     }
 
